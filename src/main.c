@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
   // 例3: 字符串转数字
   const char *str = "123abc";
   long long num = strtoll(str, NULL, 0);
-  printf("字符串\"%s\"转整型: %zd \n", str, num);
+  printf("字符串\"%s\"转整型: %lld \n", str, num);
   double dd = strtod(str, NULL);
   printf("字符串\"%s\"转浮点型: %lf \n", str, dd);
 
