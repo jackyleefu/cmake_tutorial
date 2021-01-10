@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
   // 例7: 二级指针用法
   char *p3 = NULL;
   my_malloc(&p3); // 取指针变量的地址, 为p3在堆上分配内存空间
-  strcpy(p3,"这是在内存堆上的字符串");
+  strcpy(p3, "这是在内存堆上的字符串");
   puts(p3);
   if (p3)
   {
@@ -116,6 +116,37 @@ int main(int argc, char *argv[])
   print_nnmf();
   print_fibonacci(10);
   print_fibonacci2(100);
+
+  // 例9: 判断是否是闰年
+  int year = 2021;
+  bool leapyear = false;
+  isLeapyear(year, &leapyear);
+  if (leapyear)
+  {
+    printf("%d年是闰年\n", year);
+  }
+  else
+  {
+    printf("%d年不是闰年\n", year);
+  }
+
+  int number = 123456789;
+  int digitNum = 0;
+  digits(number, &digitNum);
+  printf("%d是%d位数字\n", number, digitNum);
+
+  // 例10: 模拟泛型编程
+  int a1 = 1, b1 = 2;
+  printf("交换前a=%d,b=%d", a1, b1);
+  swap(&a1, &b1, sizeof(int));
+  printf("交换后a=%d,b=%d\n", a1, b1);
+
+  char *a2 = "aaaa";
+  char *b2 = "bbb";
+
+  printf("交换前a=%s,b=%s", a2, b2);
+  swap(&a2, &b2, sizeof(void*));
+  printf("交换后a=%s,b=%s\n", a2, b2);
 
   // 命令行暂停等待用户按任意键后退出.
   // system("pause");

@@ -40,11 +40,11 @@ void print_fibonacci(int number)
 
   for (int i = 1; i <= number; ++i)
   {
-    // printf("%d, ", t1); // 此处打印开始的数为0:
+    // printf("%d, ", t1); // 此处打印以0起始
     nextTerm = t1 + t2;
     t1 = t2;
     t2 = nextTerm;
-    printf("%d, ", t1);  // 此处打印开始的数为1:
+    printf("%d, ", t1); // 此处打印以1起始
   }
   printf("\n");
 }
@@ -54,9 +54,9 @@ void print_fibonacci2(int maxValue)
 {
   int t1 = 0, t2 = 1, nextTerm = 0;
 
-  // 显示前两项,以0起始
+  // 以0起始先打印前两项
   // printf("限制最大值的斐波那契数列: %d, %d, ", t1, t2);
-  // 显示前两项,以1起始
+  // 以1起始先打印前一项
   printf("限制最大值的斐波那契数列: %d, ", t2);
 
   nextTerm = t1 + t2;
@@ -69,4 +69,42 @@ void print_fibonacci2(int maxValue)
     nextTerm = t1 + t2;
   }
   printf("\n");
+}
+
+// 判断年份是否是闰年
+void isLeapyear(int year, bool *result)
+{
+  // （非百年,四年一闰) || 逢四百年是闰年
+  if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+  {
+    *result = true;
+  }
+  else
+  {
+    *result = false;
+  }
+}
+
+// 判断输入的整数是几位数.
+void digits(long long number, int *result)
+{
+  int count = 0;
+  while (number != 0)
+  {
+    // 得到商
+    number /= 10;
+    ++count;
+  }
+
+  *result = count;
+}
+
+// 模拟泛型编程
+void swap(void *p1, void *p2, size_t size)
+{
+  void *temp = malloc(size);
+  memcpy(temp, p1, size);
+  memcpy(p1, p2, size);
+  memcpy(p2, temp, size);
+  free(temp);
 }
