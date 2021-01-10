@@ -1,2 +1,1 @@
-# cmake_tutorial
-cmake tutorial
+Windows 下 VSCoce 必须使用CMD集成终端,否则无法build
