@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 #endif
 
   // 例1: 查看当前系统各整型类型的字节长度
-  printf("当前系统基本类型的字节长度: char %ld, short %ld, int %ld, long %ld, long long %ld, float %ld, double %ld, long double %ld \n", sizeof(char), sizeof(short), sizeof(int), sizeof(long), sizeof(long long), sizeof(float), sizeof(double), sizeof(long double));
+  printf("当前系统基本类型的字节长度: char %zd, short %zd, int %zd, long %zd, long long %zd, float %zd, double %zd, long double %zd \n", sizeof(char), sizeof(short), sizeof(int), sizeof(long), sizeof(long long), sizeof(float), sizeof(double), sizeof(long double));
 
   // 例2: 输出字符的十六进制值.
   char a = 'z';
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
   // 例3: 字符串转数字
   const char *str = "123abc";
   long long num = strtoll(str, NULL, 0);
-  printf("字符串\"%s\"转整型: %lld \n", str, num);
+  printf("字符串\"%s\"转整型: %zd \n", str, num);
   double dd = strtod(str, NULL);
   printf("字符串\"%s\"转浮点型: %lf \n", str, dd);
 
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
   int myarray[10];
   size_t arrlength = sizeof(myarray) / sizeof(int);
   populate_array(myarray, arrlength, getNextRandomValue);
-  printf("数组长度:%ld \n", arrlength);
+  printf("数组长度:%zd \n", arrlength);
   for (size_t i = 0; i < arrlength; i++)
   {
     printf("%d, ", myarray[i]);
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
   int b = 1;
   int *p1 = &b;
   int *p2 = p1;
-  printf("当前系统指针的字节长度: %ld \n", sizeof(void *));
+  printf("当前系统指针的字节长度: %zd \n", sizeof(void *));
   printf("c中所有都是值传递的.b的地址:%p,p1地址:%p, p2地址:%p \n", &b, &p1, &p2);
 
   // 例7: 二级指针用法
