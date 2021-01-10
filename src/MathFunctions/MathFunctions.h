@@ -10,3 +10,7 @@
 #endif
 
 DllExport double mysqrt(double x);
+// 九九乘法口诀表
+DllExport void print_nnmf();
+DllExport void print_fibonacci(int number);
+DllExport void print_fibonacci2(int maxValue);

@@ -112,6 +112,11 @@ int main(int argc, char *argv[])
     free(p3);
   }
 
+  // 例8: 输出九九乘法口诀表
+  print_nnmf();
+  print_fibonacci(10);
+  print_fibonacci2(100);
+
   // 命令行暂停等待用户按任意键后退出.
   // system("pause");
   return 0;
