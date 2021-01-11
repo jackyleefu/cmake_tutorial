@@ -54,7 +54,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT AND CMAKE_HOST_WIN32)
   set(CMAKE_INSTALL_PREFIX "$ENV{USERPROFILE}/${PROJECT_NAME}" CACHE PATH "install prefix" FORCE)
 endif()
 
-# 添加安装目标, 相对路径以CMAKE_INSTALL_PREFIX为前缀路径.
+# 定义安装规则. 以后就可以使用: cmake --install <二进制目录> 命令行执行安装
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
   DESTINATION include
