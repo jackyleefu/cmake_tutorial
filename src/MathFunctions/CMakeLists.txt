@@ -1,13 +1,14 @@
+# 将指定目录下的所有源文件存入到变量, 但不会递归目录.
 aux_source_directory(. MathFunctions_source)
-# 添加一个库目标
+
+# 添加一个库目标, 是静态库还是动态库由BUILD_SHARED_LIBS变量决定.
 add_library(MathFunctions ${MathFunctions_source})
 
-# 只要链接到该库, 自动加入头文件路径.
-target_include_directories(MathFunctions
-                           INTERFACE
-                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                            $<INSTALL_INTERFACE:include>
-                           )
+# 只要某个目标链接到该库,那个目标就自动加入指定的查找路径; 而编译自己时则不需要. 
+target_include_directories(MathFunctions INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:include>
+)
 
 # 附加编译器选项.
 target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
@@ -31,5 +32,5 @@ set_property(TARGET MathFunctions PROPERTY SOVERSION "1")
 
 # 添加安装规则
 set(installable_libs MathFunctions tutorial_compiler_flags)
-install(TARGETS MathFunctions DESTINATION lib)
-install(FILES src/MathFunctions.h DESTINATION include)
+install(TARGETS ${installable_libs} DESTINATION lib)
+install(FILES MathFunctions.h DESTINATION include)
