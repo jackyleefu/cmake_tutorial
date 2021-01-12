@@ -8,7 +8,6 @@
 #else
   #include <getopt.h>
   #include <libgen.h>
-  #include <unistd.h>
 #endif
 
 #include "parseOpt.h"
