@@ -2,8 +2,6 @@
 
 #if defined(_WIN32)
   #include "getopt.h"
-  #include <io.h>
-  #include <process.h>
 #else
   #include <getopt.h>
   #include <unistd.h>
@@ -48,9 +46,13 @@ int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt)
       break;
     case 'h':
     default:
+#ifdef _WIN32
       char fname[_MAX_FNAME];
       _splitpath(argv[0], NULL, NULL, fname, NULL);
       usage(fname, opt, usageFmt);
+#else
+      usage(basename(argv[0]), opt);
+#endif
       /* NOTREACHED */
       break;
     }
