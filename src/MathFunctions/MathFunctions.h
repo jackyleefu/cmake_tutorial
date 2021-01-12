@@ -1,5 +1,5 @@
 #ifndef _MATHFUNCTIONS_H
-#define _GETOPT_H
+#define _MATHFUNCTIONS_H
 
 #include <stdlib.h>
 #include <string.h>

@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+#include <wchar.h>
 #include "MathFunctions.h"
 #include "TutorialConfig.h"
 #include "parseOpt.h"
+#include "unicodeHelper.h"
 
 // 定义一个无参数的函数指针类型
 typedef int (*Fn1)(void);
@@ -135,7 +137,6 @@ int main(int argc, char *argv[])
   {
     printf("%d年不是闰年\n", year);
   }
-
   int number = 123456789;
   int digitNum = 0;
   digits(number, &digitNum);
@@ -153,6 +154,10 @@ int main(int argc, char *argv[])
   printf("交换前a=%s,b=%s", a2, b2);
   swap(&a2, &b2, sizeof(void *));
   printf("交换后a=%s,b=%s\n", a2, b2);
+
+  // 例11: MBCS 转 WCS
+  char *mbs = "你好中国";
+  printf("\"%s\"的字符数为:%zd\n", mbs, characterCount(mbs));
 
   // 命令行暂停等待用户按任意键后退出.
   // system("pause");

@@ -41,6 +41,8 @@ add_subdirectory(./src/GetOpt)
 # 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
 add_subdirectory(./src/ParseOpt)
 # 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
+add_subdirectory(./src/UnicodeHelper)
+# 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
 add_subdirectory(./src/MathFunctions)
 
 # 将指定目录下的所有源文件存入到变量, 但不会递归目录.
@@ -50,7 +52,11 @@ aux_source_directory(./src root_source)
 add_executable(${PROJECT_NAME} ${root_source})
 
 # 为可执行目标添加链接库. GCC的-l选项
-target_link_libraries(${PROJECT_NAME} PUBLIC MathFunctions ParseOpt)
+target_link_libraries(${PROJECT_NAME} PUBLIC 
+  MathFunctions 
+  ParseOpt
+  UnicodeHelper
+)
 
 # 设置编译器头文件和库文件的查找路径,类似于GCC的-I和-L选项. 由于 config.h 文件会被写入到二进制目录中, 因此需要添加输出目录.
 target_include_directories(${PROJECT_NAME} PUBLIC
