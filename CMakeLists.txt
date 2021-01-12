@@ -38,6 +38,7 @@ configure_file(TutorialConfig.h.in TutorialConfig.h)
 
 # 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
 if(MSVC)
+  message(STATUS "### generate GetOpt for MSVC")
   add_subdirectory(./src/GetOpt)
 endif()
 # 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
