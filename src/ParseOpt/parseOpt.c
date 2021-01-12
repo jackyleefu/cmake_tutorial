@@ -50,7 +50,6 @@ int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt)
     default:
       char fname[_MAX_FNAME];
       _splitpath(argv[0], NULL, NULL, fname, NULL);
-      printf_s("%s",fname);
       usage(fname, opt, usageFmt);
       /* NOTREACHED */
       break;
