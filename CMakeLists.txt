@@ -54,19 +54,21 @@ aux_source_directory(./src root_source)
 # 添加一个可执行目标
 add_executable(${PROJECT_NAME} ${root_source})
 
-# 为可执行目标添加链接库. GCC的-l选项
+# 为可执行目标添加链接库, 自动附加库的查找目录. GCC的-l和-L选项
 target_link_libraries(${PROJECT_NAME} PUBLIC 
   MathFunctions 
   ParseOpt
   UnicodeHelper
 )
 
-# 设置编译器头文件和库文件的查找路径,类似于GCC的-I和-L选项. 由于 config.h 文件会被写入到二进制目录中, 因此需要添加输出目录.
+# 设置编译器头文件的查找路径,类似于GCC的-I和-L选项. 由于 config.h 文件会被写入到二进制目录中, 因此需要添加输出目录.
 target_include_directories(${PROJECT_NAME} PUBLIC
   "${PROJECT_BINARY_DIR}"
 )
 
-# 如果用户没有设置CMAKE_INSTALL_PREFIX值, 则设置
+#************************************ 安装阶段 *******************************************#
+
+# 如果用户没有设置CMAKE_INSTALL_PREFIX值, 则修改默认安装前缀到用户家目录下. 防止遇到目录权限问题.
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT AND CMAKE_HOST_WIN32)
   set(CMAKE_INSTALL_PREFIX "$ENV{USERPROFILE}/${PROJECT_NAME}" CACHE PATH "install prefix" FORCE)
 endif()
