@@ -4,6 +4,7 @@
 #include <string.h>
 #include "MathFunctions.h"
 #include "TutorialConfig.h"
+#include "parseOpt.h"
 
 // 定义一个无参数的函数指针类型
 typedef int (*Fn1)(void);
@@ -61,6 +62,11 @@ int main(int argc, char *argv[])
 #else
   setlocale(LC_ALL, "en_US.utf8");
 #endif
+
+  // 解析命令参数
+  char *optStr = "vi:o:f:h";
+  char *usageFtm = "%s [-v] [-f hexflag] [-i inputfile] [-o outputfile] [-h]";
+  parse_opt(argc, argv, optStr, usageFtm);
 
   // 例1: 查看当前系统各整型类型的字节长度
   printf("当前系统基本类型的字节长度: char %zd, short %zd, int %zd, long %zd, long long %zd, float %zd, double %zd, long double %zd \n", sizeof(char), sizeof(short), sizeof(int), sizeof(long), sizeof(long long), sizeof(float), sizeof(double), sizeof(long double));
@@ -145,7 +151,7 @@ int main(int argc, char *argv[])
   char *b2 = "bbb";
 
   printf("交换前a=%s,b=%s", a2, b2);
-  swap(&a2, &b2, sizeof(void*));
+  swap(&a2, &b2, sizeof(void *));
   printf("交换后a=%s,b=%s\n", a2, b2);
 
   // 命令行暂停等待用户按任意键后退出.

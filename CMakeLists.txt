@@ -28,11 +28,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 
 # 是否静态库还是动态库的用户选项. 它是一个布尔类型的缓存变量, 可通过 cmake-gui、ccmake、cmake -D USE_MYMATH=ON 修改或者手动修改生成目录下的 CMakeCache.txt文件后重新生成
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+if(BUILD_SHARED_LIBS)
+  # 如果编译为动态库则添加编译器宏定义, windows的动态库的必须要有导出符号.
+  add_compile_definitions("EXPORTING_DLL")
+endif()
 
 # CMake通过输入文件将一些设置输出到头文件中.
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 
-# 添加子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
+# 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
+add_subdirectory(./src/GetOpt)
+# 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
+add_subdirectory(./src/ParseOpt)
+# 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
 add_subdirectory(./src/MathFunctions)
 
 # 将指定目录下的所有源文件存入到变量, 但不会递归目录.
@@ -42,7 +50,7 @@ aux_source_directory(./src root_source)
 add_executable(${PROJECT_NAME} ${root_source})
 
 # 为可执行目标添加链接库. GCC的-l选项
-target_link_libraries(${PROJECT_NAME} PUBLIC MathFunctions)
+target_link_libraries(${PROJECT_NAME} PUBLIC MathFunctions ParseOpt)
 
 # 设置编译器头文件和库文件的查找路径,类似于GCC的-I和-L选项. 由于 config.h 文件会被写入到二进制目录中, 因此需要添加输出目录.
 target_include_directories(${PROJECT_NAME} PUBLIC

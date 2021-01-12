@@ -1,4 +1,20 @@
 // the configured options and settings for Tutorial
+#ifndef _TUTORIALCONFIG_H
+#define _TUTORIALCONFIG_H
+
 #define Tutorial_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
 #define Tutorial_VERSION_MINOR @PROJECT_VERSION_MINOR@
 #define Tutorial_VERSION_MINOR @PROJECT_VERSION_PATCH@
+
+#if defined(_WIN32)
+    #if defined(EXPORTING_DLL)
+        #define DLL_EXPORT __declspec(DLL_EXPORT)
+    #else
+        // #define DLL_EXPORT __declspec(dllimport)
+        #define DLL_EXPORT
+    #endif
+#else // non windows
+    #define DLL_EXPORT
+#endif
+
+#endif /* _TUTORIALCONFIG_H */
