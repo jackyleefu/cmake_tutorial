@@ -3,10 +3,6 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <errno.h>
 #include "TutorialConfig.h"
 
 #ifdef __cplusplus

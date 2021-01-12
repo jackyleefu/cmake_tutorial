@@ -1,4 +1,7 @@
-#include "parseOpt.h"
+
+#include <stdlib.h>
+#include <inttypes.h>
+#include <errno.h>
 
 #if defined(_WIN32)
   #include "getopt.h"
@@ -7,6 +10,8 @@
   #include <libgen.h>
   #include <unistd.h>
 #endif
+
+#include "parseOpt.h"
 
 
 #define ERR_FOPEN_INPUT "fopen(input, r)"
