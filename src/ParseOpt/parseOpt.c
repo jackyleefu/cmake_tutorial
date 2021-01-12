@@ -4,6 +4,7 @@
   #include "getopt.h"
 #else
   #include <getopt.h>
+  #include <libgen.h>
   #include <unistd.h>
 #endif
 
