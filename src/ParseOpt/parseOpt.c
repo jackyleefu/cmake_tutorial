@@ -14,6 +14,28 @@
 #define ERR_DO_THE_NEEDFUL "do_the_needful blew up"
 #define DEFAULT_PROGNAME "command"
 
+void usage(char *progname, int opt, char* usageFmt)
+{
+  fprintf(stderr, usageFmt, progname ? progname : DEFAULT_PROGNAME);
+  exit(EXIT_FAILURE);
+  /* NOTREACHED */
+}
+
+int do_the_needful(options_t *options)
+{
+  if (!options)
+  {
+    errno = EINVAL;
+    return EXIT_FAILURE;
+  }
+  if (!options->input || !options->output)
+  {
+    errno = ENOENT;
+    return EXIT_FAILURE;
+  }
+  return EXIT_SUCCESS;
+}
+
 int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt)
 {
   int opt;
@@ -52,7 +74,7 @@ int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt)
       _splitpath(argv[0], NULL, NULL, fname, NULL);
       usage(fname, opt, usageFmt);
 #else
-      usage(basename(argv[0]), opt);
+      usage(basename(argv[0]), opt, usageFmt);
 #endif
       /* NOTREACHED */
       break;
@@ -62,26 +84,6 @@ int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt)
     perror(ERR_DO_THE_NEEDFUL);
     exit(EXIT_FAILURE);
     /* NOTREACHED */
-  }
-  return EXIT_SUCCESS;
-}
-void usage(char *progname, int opt, char* usageFmt)
-{
-  fprintf(stderr, usageFmt, progname ? progname : DEFAULT_PROGNAME);
-  exit(EXIT_FAILURE);
-  /* NOTREACHED */
-}
-int do_the_needful(options_t *options)
-{
-  if (!options)
-  {
-    errno = EINVAL;
-    return EXIT_FAILURE;
-  }
-  if (!options->input || !options->output)
-  {
-    errno = ENOENT;
-    return EXIT_FAILURE;
   }
   return EXIT_SUCCESS;
 }

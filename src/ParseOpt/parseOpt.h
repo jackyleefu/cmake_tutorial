@@ -24,8 +24,6 @@ typedef struct
 
 DLL_EXPORT int parse_opt(int argc, char *argv[], char *optStr, char *usageFmt);
 
-DLL_EXPORT void usage(char *progname, int opt, char* usageFmt);
-
 #ifdef __cplusplus
 }
 #endif 
