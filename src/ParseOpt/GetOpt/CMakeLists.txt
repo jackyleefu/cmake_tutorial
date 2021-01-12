@@ -10,7 +10,7 @@ target_include_directories(${LibName}
   INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
-  PUBLIC 
+  PRIVATE
     "${CMAKE_BINARY_DIR}"
 )
 
