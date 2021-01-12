@@ -21,10 +21,12 @@ target_include_directories(${LibName}
 )
 
 # 链接库, tutorial_compiler_flags 目标库用于附加编译器选项.
-target_link_libraries(${LibName} 
-  PUBLIC tutorial_compiler_flags
-  PRIVATE "$<$<CXX_COMPILER_ID:MSVC>:GetOpt>"
-)
+target_link_libraries(${LibName} PUBLIC tutorial_compiler_flags)
+
+if(MSVC)
+  message(STATUS "### link GetOpt for MSVC")
+  target_link_libraries(${LibName} PRIVATE GetOpt)
+endif()
 
 # 设置库目标的属性.
 set_property(TARGET ${LibName} PROPERTY VERSION "1.0.0")
