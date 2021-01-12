@@ -1,8 +1,6 @@
 #ifndef _MATHFUNCTIONS_H
 #define _MATHFUNCTIONS_H
 
-#include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include "TutorialConfig.h"
 

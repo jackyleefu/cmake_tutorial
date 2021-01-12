@@ -1,5 +1,8 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "MathFunctions.h"
+
 #ifdef USE_MYMATH
   #include <stdio.h>
 #endif
