@@ -15,7 +15,7 @@ target_include_directories(${LibName}
 )
 
 
-# 附加编译器选项.
+# 链接库, tutorial_compiler_flags 目标库用于附加编译器选项.
 target_link_libraries(${LibName} PUBLIC tutorial_compiler_flags)
 
 # 设置库目标的属性.

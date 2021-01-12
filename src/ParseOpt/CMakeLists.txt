@@ -1,3 +1,9 @@
+# 配置子目录, 子项目下有自己的CMakeLists.txt, cmake会立即去配置子目录, 等待完成后才继续执行.
+if(MSVC)
+  message(STATUS "### generate GetOpt for MSVC")
+  add_subdirectory(./GetOpt)
+endif()
+
 # 将指定目录下的所有源文件存入到变量, 但不会递归目录.
 aux_source_directory(. ParseOpt_source)
 
